@@ -3,18 +3,21 @@
   <div id="app">
     <HeaderComponent/>
     <TravelQuote/>
+    <Prueba/>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
 import TravelQuote from "./components/TravelQuote";
+import Prueba from "./components/Prueba";
 
 export default {
   name: 'app',
    components: {
     HeaderComponent,
-    TravelQuote
+    TravelQuote,
+    Prueba
   },
   data () {
     return {
@@ -31,23 +34,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>
