@@ -2,16 +2,19 @@
 <template>
   <div id="app">
     <HeaderComponent/>
+    <TravelQuote/>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
+import TravelQuote from "./components/TravelQuote";
 
 export default {
   name: 'app',
    components: {
-    HeaderComponent
+    HeaderComponent,
+    TravelQuote
   },
   data () {
     return {
