@@ -1,3 +1,4 @@
+
 # Reto Interseguro
 - Definiendo Componentes
-![quoteComponent](assets/images/quoteComponent.PNG)
+![quoteComponent](src/assets/quoteComponent.PNG)
