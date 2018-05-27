@@ -1,4 +1,5 @@
 import axios from 'axios'
+import countris from './countris.json'
 
 const interseguroUrl = 'https://testsoat.interseguro.com.pe/talentfestapi/destinos'
 
@@ -16,3 +17,16 @@ export function getDestination() {
     console.log(e);
   })
 }
+
+export function ajaxFindCountry (query) {
+    return new Promise((resolve, reject) => {
+        getDestination().then(res=>{
+      setTimeout(() => {
+        const results = res.filter((element, index, array) => {
+          return element.name.toLowerCase().includes(query.toLowerCase())
+        });
+        resolve(results)
+      }, 1000)
+    });
+    })
+  }

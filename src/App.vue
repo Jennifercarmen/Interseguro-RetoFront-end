@@ -3,21 +3,18 @@
   <div id="app">
     <HeaderComponent/>
     <TravelQuote/>
-    <Prueba/>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
 import TravelQuote from "./components/TravelQuote";
-import Prueba from "./components/Prueba";
 
 export default {
   name: 'app',
    components: {
     HeaderComponent,
-    TravelQuote,
-    Prueba
+    TravelQuote
   },
   data () {
     return {

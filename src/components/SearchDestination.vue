@@ -1,19 +1,20 @@
 <!-- Vue component -->
 <template>
+
   <div>
-    <label class="typo__label" for="ajax">Async multiselect</label>
-  <multiselect v-model="selectedCountries" id="ajax" label="name" track-by="code" placeholder="Type to search" open-direction="bottom" :options="countries" :multiple="true" :searchable="true" :loading="isLoading" :internal-search="false" :clear-on-select="false" :close-on-select="false" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false" :hide-selected="true" @search-change="asyncFind">
+  <multiselect v-model="selectedDestination" id="ajax" label="name" track-by="code" placeholder="Ingrese destino" open-direction="bottom" :options="Destination" :multiple="true" :searchable="true" :loading="isLoading" :internal-search="false" :clear-on-select="false" :close-on-select="false" :options-limit="300" :limit="6" :max="1" :limit-text="limitText" :max-height="600" :show-no-results="false" :hide-selected="true" @search-change="asyncFind">
     <template slot="clear" slot-scope="props">
-      <div class="multiselect__clear" v-if="selectedCountries.length" @mousedown.prevent.stop="clearAll(props.search)"></div>
-    </template><span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+      <div class="multiselect__clear" v-if="selectedDestination.length" @mousedown.prevent.stop="clearAll(props.search)" @Close="clearAll(props.search)"></div>
+    </template>
+    <span slot="maxElements">Máximo de opciones seleccionadas. Primero elimine una opción seleccionada para seleccionar otra.</span>
+    <span slot="noResult">No se encontraron elementos. Considera cambiar la consulta de búsqueda.</span>
   </multiselect>
-  <pre class="language-json"><code>{{ selectedCountries  }}</code></pre>
   </div>
 </template>
 
 <script>
  import Multiselect from 'vue-multiselect'
-import { getDestination } from '../helpers/interseguroApi'
+import { getDestination,ajaxFindCountry } from '../helpers/interseguroApi'
 
 export default {
   components: {
@@ -21,24 +22,24 @@ export default {
   },
   data () {
     return {
-      selectedCountries: [],
-      countries: [],
+      selectedDestination: [],
+      Destination: [],
       isLoading: false
     }
   },
   methods: {
     limitText (count) {
-      return `and ${count} other countries`
+      return `and ${count} other Destination`
     },
-    asyncFind () {
+    asyncFind (query) {
       this.isLoading = true
-      getDestination().then(response => {
-        this.countries = response
+      ajaxFindCountry(query).then(response => {
+        this.Destination = response
         this.isLoading = false
       })
     },
     clearAll () {
-      this.selectedCountries = []
+      this.selectedDestination = []
     }
   }
 }
