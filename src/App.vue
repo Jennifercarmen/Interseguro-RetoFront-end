@@ -3,20 +3,20 @@
   <div id="app">
     <v-app>
     <HeaderComponent/>
-        <Travel/>
+        <TravelQuote/>
     </v-app>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
-import Travel from "./components/Travel";
+import TravelQuote from "./components/TravelQuote/TravelQuote";
 
 export default {
   name: 'app',
    components: {
     HeaderComponent,
-    Travel
+    TravelQuote
   },
   data () {
     return {

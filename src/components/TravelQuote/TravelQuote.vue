@@ -12,18 +12,18 @@
               <v-icon color="pink">more_vert</v-icon>
             </v-btn>
           </v-toolbar>
-              <TravelQuote/>
+              <Travel/>
         </v-card>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 <script>
-import TravelQuote from "./TravelQuote";
+import Travel from "./Travel";
 
   export default {
     components:{
-            TravelQuote
+            Travel
     }
   }
 </script>

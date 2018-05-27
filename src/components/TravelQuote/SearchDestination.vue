@@ -1,6 +1,5 @@
 <!-- Vue component -->
 <template>
-
   <div>
   <multiselect v-model="selectedDestination" id="ajax" label="name" track-by="code" placeholder="Ingrese destino" open-direction="bottom" :options="Destination" :multiple="true" :searchable="true" :loading="isLoading" :internal-search="false" :clear-on-select="false" :close-on-select="false" :options-limit="300" :limit="6" :max="1" :limit-text="limitText" :max-height="600" :show-no-results="false" :hide-selected="true" @search-change="asyncFind">
     <template slot="clear" slot-scope="props">
@@ -14,7 +13,7 @@
 
 <script>
  import Multiselect from 'vue-multiselect'
-import { getDestination,ajaxFindCountry } from '../helpers/interseguroApi'
+import { getDestination,ajaxFindCountry } from '../../helpers/interseguroApi'
 
 export default {
   components: {
@@ -45,7 +44,5 @@ export default {
 }
 </script>
 
-<!-- New step!
-     Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
