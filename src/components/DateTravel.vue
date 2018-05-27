@@ -14,7 +14,7 @@
         <v-text-field
           slot="activator"
           v-model="date"
-          label="Ida"
+          :label="messageLabel"
           prepend-icon="event"
           readonly
         ></v-text-field>
@@ -37,6 +37,9 @@
       menu: false,
       modal: false,
       menu2: false
-    })
+    }),
+    props:[
+        'messageLabel'
+    ]
   }
 </script>

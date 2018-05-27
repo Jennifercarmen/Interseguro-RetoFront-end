@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout row wrap justify-center>
-      <v-flex xs12 sm6>
+      <v-flex xs12 sm9 md8>
         <v-card >
           <v-toolbar class="quote">
             <v-btn icon>
