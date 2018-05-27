@@ -1,5 +1,7 @@
 <template>
 <v-container fluid>
+  <h1 @hijo:change="escucharHijo">
+</h1>
   <form>
     <v-layout row wrap>
       <v-flex xs12 sm5 md5 order-md4 order-sm2>
@@ -49,7 +51,7 @@
               </v-layout>
               <v-layout row wrap>
                  <v-flex xs12 sm5 md5 order-md4>
-                 <DateTravel messageLabel="ida" />
+                 <DateTravel messageLabel="ida"   />
                  </v-flex>
                  <v-flex xs12 sm5 md5 order-md4>
                    <DateTravel messageLabel="Vuelta" />
@@ -66,12 +68,13 @@
 
 <script>
 import DateTravel from "./DateTravel";
-import Multiselect from 'vue-multiselect'
+import Multiselect from 'vue-multiselect';
+import axios from 'axios';
+
 import {
     getDestination,
     ajaxFindPlace
 } from '../helpers/interseguroApi'
-import axios from 'axios';
 
 export default {
     data() {
@@ -96,6 +99,9 @@ export default {
         DateTravel
     },
     methods: {
+      escucharHijo () {
+      console.log('Mensaje recibido de Hijo')
+    },
         limitText(count) {
             return `and ${count} other Destination`
         },
@@ -110,32 +116,33 @@ export default {
             this.selectedDestination = [];
         },
         addToAPI() {
-            let newTravel = {
-                destination: this.Travel.destination[0]['name'],
-                going: this.Travel.going,
-                return: this.Travel.return,
-                passengers: this.Travel.passengers
-            }
-            console.log(newTravel);
-            const proxy = 'https://cors-anywhere.herokuapp.com/';
-            const url = 'https://testsoat.interseguro.com.pe/talentfestapi/cotizacion';
-            axios.post(proxy + url, '', {
-                    params: {
-                        destino: 'Bangkok-Tailandia(BGK)',
-                        fecha_partida: '12/07/2019',
-                        fecha_retorno: '28/07/2019',
-                        cantidad_pasajeros: '2'
-                    }
-                })
-                .then(function (response) {
-                    console.log(response);
-                }).catch(function (error) {
-                    console.log(error);
-                });
+          let newTravel = {
+              destination: '',
+              going: '',
+              return: '',
+              passengers: ''
+          }
+          console.log(newTravel);
+          const proxy = 'https://cors-anywhere.herokuapp.com/';
+          const url = 'https://testsoat.interseguro.com.pe/talentfestapi/cotizacion';
+          axios.post(proxy + url, '', {
+                params: {
+                    destino: this.Travel.destination[0]['name'],
+                    fecha_partida: '28/08/2019',
+                    fecha_retorno: '28/07/2019',
+                    cantidad_pasajeros: this.Travel.passengers
+                }
+            })
+            .then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+          });
         }
-    }
+    },
+    props:[
+      "date"
+    ]
 }
 </script>
-
-
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

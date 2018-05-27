@@ -20,8 +20,8 @@
         ></v-text-field>
         <v-date-picker v-model="date" scrollable>
           <v-spacer></v-spacer>
-          <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-          <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+          <v-btn flat color="primary" @click="modal = false"  >Cancel</v-btn>
+          <v-btn flat color="primary" @click="$refs.dialog.save(date)" @click.prevent="emitirEventoHijo">OK</v-btn>
         </v-date-picker>
       </v-dialog>
     </v-flex>
@@ -31,13 +31,20 @@
 </template>
 
 <script>
+  import Travel from './Travel';
   export default {
+
     data: () => ({
-      date: null,
+      date:null,
       menu: false,
       modal: false,
       menu2: false
     }),
+    methods: {
+    emitirEventoHijo() {
+      this.$emit('hijo:change')
+    }
+    },
     props:[
         'messageLabel'
     ]
