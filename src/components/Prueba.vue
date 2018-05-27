@@ -2,13 +2,11 @@
     <div data-app>
     <h1>{{title}}</h1>
     <label  for="">Destino</label>
-    <DestinationList/>
-  
     </div>
 </template>
 
 <script>
-import {getDestination} from './../helpers/interseguroApi'
+import {getDestination} from '../helpers/interseguroApi'
 import DestinationList from './DestinationList';
     export default{
         name: "prueba",
@@ -19,13 +17,12 @@ import DestinationList from './DestinationList';
             return {
                 title:"Cotiza tu viaje",
                 destinationList:[],
-                place:''
             };
         },
         created(){
-            getDestination('bang').then(res=>{
-                console.log(res)
+            getDestination().then(res=>{
                 this.destinationList =res
+                console.log(this.destinationList);
             })
         }
     }

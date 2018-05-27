@@ -2,20 +2,16 @@ import axios from 'axios'
 
 const interseguroUrl = 'https://testsoat.interseguro.com.pe/talentfestapi/destinos'
 
-export function getDestination(place) {
-  return axios.get(interseguroUrl, {
-    params: {
-      place
-    }
-  }).then(response => {
+export function getDestination() {
+  return axios.get(interseguroUrl).then(response => {
       const {data} = response,
       destinationList= []
       for (let destination in data){
           destinationList.push({
-              name:destination
+              name:data[destination]
           })
       }
-    console.log(response)
+      return destinationList
   }).catch(e => {
     console.log(e);
   })
