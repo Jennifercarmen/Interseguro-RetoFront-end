@@ -1,20 +1,22 @@
 
 <template>
   <div id="app">
+    <v-app>
     <HeaderComponent/>
-    <TravelQuote/>
+        <Travel/>
+    </v-app>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
-import TravelQuote from "./components/TravelQuote";
+import Travel from "./components/Travel";
 
 export default {
   name: 'app',
    components: {
     HeaderComponent,
-    TravelQuote
+    Travel
   },
   data () {
     return {

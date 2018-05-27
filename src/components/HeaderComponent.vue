@@ -1,7 +1,13 @@
 <template>
-  <v-toolbar>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title>Interseguro</v-toolbar-title>
-    <v-spacer></v-spacer>
-  </v-toolbar>
+    <div class="header">
+          <img src="../assets/logo.png" alt="avatar">
+    </div>
 </template>
+<style>
+.header{
+  background-color: white;
+}
+.header img{
+  width: 200px;
+}
+</style>

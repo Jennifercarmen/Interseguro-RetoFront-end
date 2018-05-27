@@ -1,26 +1,26 @@
 import axios from 'axios'
-import countris from './countris.json'
-
 const interseguroUrl = 'https://testsoat.interseguro.com.pe/talentfestapi/destinos'
 
 export function getDestination() {
   return axios.get(interseguroUrl).then(response => {
-      const {data} = response,
-      destinationList= []
-      for (let destination in data){
-          destinationList.push({
-              name:data[destination]
-          })
-      }
-      return destinationList
+    const {
+      data
+    } = response,
+    destinationList = []
+    for (let destination in data) {
+      destinationList.push({
+        name: data[destination]
+      })
+    }
+    return destinationList
   }).catch(e => {
     console.log(e);
   })
 }
 
-export function ajaxFindCountry (query) {
-    return new Promise((resolve, reject) => {
-        getDestination().then(res=>{
+export function ajaxFindCountry(query) {
+  return new Promise((resolve, reject) => {
+    getDestination().then(res => {
       setTimeout(() => {
         const results = res.filter((element, index, array) => {
           return element.name.toLowerCase().includes(query.toLowerCase())
@@ -28,5 +28,5 @@ export function ajaxFindCountry (query) {
         resolve(results)
       }, 1000)
     });
-    })
-  }
+  })
+}
