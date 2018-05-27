@@ -2,6 +2,8 @@
     <div data-app>
     <h1>{{title}}</h1>
     <label  for="">Destino</label>
+    <DestinationList
+    />
     </div>
 </template>
 
@@ -17,13 +19,26 @@ import DestinationList from './DestinationList';
             return {
                 title:"Cotiza tu viaje",
                 destinationList:[],
+                place:''
             };
         },
         created(){
             getDestination().then(res=>{
                 this.destinationList =res
                 console.log(this.destinationList);
+                this.place=res[0]
             })
+        },
+        methods:{
+            changePlace(){
+                
+            },
+            PlaceList(){
+                return this.destinationList
+            },
+            targetList(){
+
+            }
         }
     }
 </script>
