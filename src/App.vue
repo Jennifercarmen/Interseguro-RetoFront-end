@@ -10,7 +10,7 @@
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
-import TravelQuote from "./components/TravelQuote/TravelQuote";
+import TravelQuote from "./components/TravelQuote";
 
 export default {
   name: 'app',

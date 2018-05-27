@@ -18,7 +18,7 @@ export function getDestination() {
   })
 }
 
-export function ajaxFindCountry(query) {
+export function ajaxFindPlace(query) {
   return new Promise((resolve, reject) => {
     getDestination().then(res => {
       setTimeout(() => {
