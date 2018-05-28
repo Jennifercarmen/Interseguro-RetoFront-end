@@ -4,6 +4,11 @@
     <v-app>
     <HeaderComponent/>
         <TravelQuote/>
+            <router-link to="/Quotation">Login</router-link>
+         <hr>
+    <transition name="fade" mode="out-in">
+        <router-view></router-view>
+    </transition>    
     </v-app>
   </div>
 </template>

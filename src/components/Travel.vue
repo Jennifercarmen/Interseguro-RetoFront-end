@@ -51,15 +51,60 @@
               </v-layout>
               <v-layout row wrap>
                  <v-flex xs12 sm5 md5 order-md4>
-                 <DateTravel messageLabel="ida"   />
-                 </v-flex>
+      <v-dialog
+        ref="dialog"
+        v-model="modal"
+        :return-value.sync="date"
+        persistent
+        lazy
+        full-width
+        width="290px"
+      >
+        <v-text-field
+          slot="activator"
+          v-model="date"
+          label="Ida"
+          prepend-icon="event"
+          readonly
+        ></v-text-field>
+        <v-date-picker v-model="Travel.going" scrollable>
+          <v-spacer></v-spacer>
+          <v-btn flat color="primary" @click="modal = false"  >Cancel</v-btn>
+          <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+        </v-date-picker>
+      </v-dialog>
+    </v-flex>
+    <v-spacer></v-spacer>
+
                  <v-flex xs12 sm5 md5 order-md4>
-                   <DateTravel messageLabel="Vuelta" />
-                   </v-flex>
-                   </v-layout>
+      <v-dialog
+        ref="dialog"
+        v-model="modal"
+        :return-value.sync="date"
+        persistent
+        lazy
+        full-width
+        width="290px"
+      >
+        <v-text-field
+          slot="activator"
+          v-model="date"
+          label="Ida"
+          prepend-icon="event"
+          readonly
+        ></v-text-field>
+        <v-date-picker v-model="Travel.return" scrollable>
+          <v-spacer></v-spacer>
+          <v-btn flat color="primary" @click="modal = false"  >Cancel</v-btn>
+          <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+        </v-date-picker>
+      </v-dialog>
+    </v-flex>
+    <v-spacer></v-spacer>
+  </v-layout>       
                    <v-layout row wrap>
                        <v-flex xs12 sm10 md8 order-md4 order-sm2>
-                           <v-btn @click="addToAPI">Cotizar</v-btn>
+                          <v-btn class="pink white--text" @click="addToAPI">Cotizar</v-btn>   
                         </v-flex>
                     </v-layout>
    </form>
@@ -86,6 +131,10 @@ export default {
             rules: {
                 required: (value) => !!value || 'Required.',
             },
+           date:null,
+            menu: false,
+           modal: false,
+           menu2: false,
             Travel: {
                 destination: '',
                 going: '',
@@ -139,10 +188,7 @@ export default {
                 console.log(error);
           });
         }
-    },
-    props:[
-      "date"
-    ]
+    }
 }
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

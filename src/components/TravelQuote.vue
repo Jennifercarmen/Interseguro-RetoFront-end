@@ -6,6 +6,8 @@
           <v-toolbar class="quote">
             <v-btn icon>
               <v-icon color="pink">arrow_back</v-icon>
+              <img class="maleta" src="../assets/maleta.png" alt="maleta">
+              <p class="tit">Cotiza el seguro de tu próximo viaje</p>
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn icon>
@@ -31,5 +33,15 @@ import Travel from "./Travel";
 <style>
     .toolbar__content{
         background-color:#f0f6facc;
+    }
+    .maleta{
+      width: 20px;
+    }
+    .tit{
+      font-size: 12px;
+      position: absolute;
+      margin-left: 160px;
+      color: #008bd4;
+      font-weight: bold;
     }
 </style>

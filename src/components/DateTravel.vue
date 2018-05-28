@@ -18,7 +18,7 @@
           prepend-icon="event"
           readonly
         ></v-text-field>
-        <v-date-picker v-model="date" scrollable>
+        <v-date-picker v-model="date" scrollable @click="emitirEventoHijo">
           <v-spacer></v-spacer>
           <v-btn flat color="primary" @click="modal = false"  >Cancel</v-btn>
           <v-btn flat color="primary" @click="$refs.dialog.save(date)" @click.prevent="emitirEventoHijo">OK</v-btn>
@@ -27,11 +27,12 @@
     </v-flex>
     <v-spacer></v-spacer>
   </v-layout>
+
+  
   </div>
 </template>
 
 <script>
-  import Travel from './Travel';
   export default {
 
     data: () => ({
@@ -39,14 +40,6 @@
       menu: false,
       modal: false,
       menu2: false
-    }),
-    methods: {
-    emitirEventoHijo() {
-      this.$emit('hijo:change')
-    }
-    },
-    props:[
-        'messageLabel'
-    ]
+    })
   }
 </script>

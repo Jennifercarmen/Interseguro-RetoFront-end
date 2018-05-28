@@ -1,13 +1,5 @@
 <template>
-    <transition name="fade" mode="out-in">
-        <router-view></router-view>
-    </transition>
+    <div>
+        <h1>Hola</h1>
+    </div>
 </template>
-<script>
-    const routes=[
-        {
-        //Sin propiedades
-            patch:'/',component:About
-        }
-    ]
-</script>
