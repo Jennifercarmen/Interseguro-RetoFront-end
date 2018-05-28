@@ -28,14 +28,14 @@
           :hide-selected="true"
           @search-change="asyncFind"
       >
-      <template slot="clear" slot-scope="props">
+      
           <div
               class="multiselect__clear"
               v-if="selectedDestination.length"
               @mousedown.prevent.stop="clearAll(props.search)"
               @Close="clearAll(props.search)"
           ></div>
-              </template>
+              
               <span slot="maxElements">Máximo de opciones seleccionadas. Primero elimine una opción seleccionada para seleccionar otra.</span>
               <span slot="noResult">No se encontraron elementos. Considera cambiar la consulta de búsqueda.</span>
               </multiselect>
@@ -62,7 +62,7 @@
       >
         <v-text-field
           slot="activator"
-          v-model="date"
+          v-model="Travel.going"
           label="Ida"
           prepend-icon="event"
           readonly
@@ -70,13 +70,13 @@
         <v-date-picker v-model="Travel.going" scrollable>
           <v-spacer></v-spacer>
           <v-btn flat color="primary" @click="modal = false"  >Cancel</v-btn>
-          <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+          <v-btn flat color="primary" @click="$refs.dialog.save(Travel.going)">OK</v-btn>
         </v-date-picker>
       </v-dialog>
     </v-flex>
     <v-spacer></v-spacer>
 
-                 <v-flex xs12 sm5 md5 order-md4>
+    <v-flex xs12 sm5 md5 order-md4>
       <v-dialog
         ref="dialog"
         v-model="modal"
@@ -88,15 +88,15 @@
       >
         <v-text-field
           slot="activator"
-          v-model="date"
-          label="Ida"
+          v-model="Travel.return"
+          label="Vuelta"
           prepend-icon="event"
           readonly
         ></v-text-field>
         <v-date-picker v-model="Travel.return" scrollable>
           <v-spacer></v-spacer>
           <v-btn flat color="primary" @click="modal = false"  >Cancel</v-btn>
-          <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+          <v-btn flat color="primary" @click="$refs.dialog.save(Travel.return)">OK</v-btn>
         </v-date-picker>
       </v-dialog>
     </v-flex>
@@ -132,13 +132,13 @@ export default {
                 required: (value) => !!value || 'Required.',
             },
            date:null,
-            menu: false,
+        menu: false,
            modal: false,
            menu2: false,
             Travel: {
                 destination: '',
-                going: '',
-                return: '',
+                going: null,
+                return: null,
                 passengers: ''
             }
         }
@@ -177,13 +177,18 @@ export default {
           axios.post(proxy + url, '', {
                 params: {
                     destino: this.Travel.destination[0]['name'],
-                    fecha_partida: '28/08/2019',
-                    fecha_retorno: '28/07/2019',
+                    fecha_partida: this.Travel.going,
+                    fecha_retorno: this.Travel.return,
                     cantidad_pasajeros: this.Travel.passengers
                 }
             })
             .then(function (response) {
                 console.log(response);
+                EventBus.$emit('items', response);
+                
+                //this.$router.push({name: 'Quotation'});
+            
+               
             }).catch(function (error) {
                 console.log(error);
           });
